@@ -1,0 +1,27 @@
+# YOLO Dataset Configuration
+# Customize this file for your product dataset
+
+# Dataset paths (relative to project root)
+path: ../../data/splits          # dataset root dir
+train: train/images              # train images
+val: val/images                  # val images
+test: test/images                # test images (optional)
+
+# Number of classes
+nc: 3
+
+# Class names - CUSTOMIZE these for your products
+names:
+  0: product_a
+  1: product_b
+  2: product_c
+
+# NOTE: Update 'nc' and 'names' to match your actual products
+# Example for retail:
+# nc: 5
+# names:
+#   0: coca_cola
+#   1: pepsi
+#   2: water_bottle
+#   3: orange_juice
+#   4: milk

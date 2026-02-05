@@ -1,0 +1,67 @@
+# Virtual Environment
+inventory_env/
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ML Model weights (large files)
+models/weights/*.pt
+models/weights/*/
+models/exports/*.onnx
+models/exports/*.engine
+!models/weights/.gitkeep
+!models/exports/.gitkeep
+
+# Data (large files - keep structure only)
+data/raw/*
+data/augmented/*
+data/splits/train/*
+data/splits/val/*
+data/splits/test/*
+data/uploads/*
+!data/raw/.gitkeep
+!data/augmented/.gitkeep
+!data/splits/train/images/.gitkeep
+!data/splits/train/labels/.gitkeep
+!data/splits/val/images/.gitkeep
+!data/splits/val/labels/.gitkeep
+!data/splits/test/images/.gitkeep
+!data/splits/test/labels/.gitkeep
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node / Frontend
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Logs
+*.log
+logs/
+
+# Docker
+.docker/

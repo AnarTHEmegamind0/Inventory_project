@@ -1,0 +1,31 @@
+# ML & Computer Vision
+ultralytics==8.3.241
+torch==2.9.1
+torchvision==0.24.1
+opencv-python==4.12.0.88
+numpy==2.2.6
+scipy==1.16.3
+
+# Data Processing
+polars==1.36.1
+pillow==12.0.0
+matplotlib==3.10.8
+
+# Image Labeling
+labelImg==1.8.6
+
+# Backend API
+fastapi==0.115.0
+uvicorn[standard]==0.30.0
+motor==3.6.0
+pydantic==2.9.0
+python-multipart==0.0.9
+python-dotenv==1.0.1
+
+# Utilities
+tqdm==4.67.1
+PyYAML==6.0.3
+requests==2.32.5
+
+# Testing
+pytest==8.3.0
