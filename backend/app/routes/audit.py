@@ -31,16 +31,13 @@ async def run_audit(request: AuditRequest):
     and generates an audit decision.
     """
     try:
-        from src.inference.audit_engine import AuditEngine
+        from ..services.audit_service import AuditService
 
-        engine = AuditEngine(tolerance=request.tolerance)
-        result = engine.run_audit(
-            expected_inventory=request.expected_inventory,
-            detected_products=request.detected_products,
+        audit_dict = AuditService.run_audit(
+            expected=request.expected_inventory,
+            detected=request.detected_products,
             location=request.location,
         )
-
-        audit_dict = result.to_dict()
 
         # Save to MongoDB
         collection = get_audits_collection()
@@ -53,7 +50,7 @@ async def run_audit(request: AuditRequest):
     except ImportError:
         raise HTTPException(
             status_code=500,
-            detail="Audit engine not available. Check src/inference/audit_engine.py"
+            detail="Audit service not available. Check backend/app/services/audit_service.py"
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

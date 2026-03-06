@@ -169,7 +169,7 @@ class ProductDetector:
                 if show_confidence:
                     label += f" {det.confidence:.2f}"
 
-                (text_w, text_h), _ = cv2.getFontSize = cv2.getTextSize(
+                (text_w, text_h), _ = cv2.getTextSize(
                     label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 1
                 )
                 cv2.rectangle(

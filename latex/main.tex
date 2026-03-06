@@ -1,0 +1,173 @@
+%----------------------------------------------------------------------------------------
+%   Доорх хэсгийг өөрчлөх шаардлагагүй
+%----------------------------------------------------------------------------------------
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+\documentclass[12pt,A4]{report}
+
+\usepackage{fontspec,xltxtra,xunicode}
+\setmainfont[Ligatures=TeX]{Times New Roman}
+\setsansfont{Arial}
+
+% \usepackage[utf8x]{inputenc}
+% \usepackage[mongolian]{babel}
+%\usepackage{natbib}
+\usepackage{geometry}
+%\usepackage{fancyheadings} fancyheadings is obsolete: replaced by fancyhdr. JL
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{afterpage}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsbsy}
+\usepackage{dcolumn,array}
+\usepackage{tocloft}
+\usepackage{dics}
+\usepackage{nomencl}
+\usepackage{upgreek}
+\newcommand{\argmin}{\arg\!\min}
+\usepackage{mathtools}
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage{listings}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\makeatletter
+\usepackage{caption}
+\captionsetup[table]{belowskip=0.5pt}
+\usepackage{subfiles}
+
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Код}
+\renewcommand{\lstlistlistingname}{\lstlistingname ын жагсаалт}
+
+\usepackage{color}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.99,0.99,0.99}
+ 
+\lstdefinestyle{mystyle}{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    %basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=false,                 
+    numbers=left,                    
+    numbersep=10pt,                  
+    showspaces=false,                
+    showstringspaces=true,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle, label=DescriptiveLabel} 
+
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\makenomenclature
+\begin{document}
+
+
+%----------------------------------------------------------------------------------------
+%   Өөрийн мэдээллээ оруулах хэсэг
+%----------------------------------------------------------------------------------------
+
+% Дипломийн ажлын сэдэв
+\title{ЗУРГАНД СУУРИЛСАН БАРАА ТАНИХ БОЛОН АУДИТЫН ШИЙДВЭР ГАРГАХ АВТОМАТ СИСТЕМ}
+% Дипломын ажлын англи нэр
+\titleEng{Image-Based Product Recognition and Automated Audit Decision System}
+% Өөрийн овог нэрийг бүтнээр нь бичнэ
+\author{Түвшинжаргалын Анар}
+% Өөрийн овгийн эхний үсэг нэрээ бичнэ
+\authorShort{Т.Анар}
+% Удирдагчийн зэрэг цол овгийн эхний үсэг нэр
+\supervisor{Др. Ч.Алтангэрэл}
+% Хамтарсан удирдагчийн зэрэг цол овгийн эхний үсэг нэр
+\cosupervisor{Др. Г.Амарсанаа}
+
+% СиСи дугаар 
+\sisiId{12D1SIT0001}
+% Их сургуулийн нэр
+\university{МОНГОЛ УЛСЫН ИХ СУРГУУЛЬ}
+% Бүрэлдэхүүн сургуулийн нэр
+\faculty{ХЭРЭГЛЭЭНИЙ ШИНЖЛЭХ УХААН, ИНЖЕНЕРЧЛЭЛИЙН СУРГУУЛЬ}
+% Тэнхимийн нэр
+\department{МЭДЭЭЛЭЛ, КОМПЬЮТЕРИЙН УХААНЫ ТЭНХИМ}
+% Зэргийн нэр
+\degreeName{Бакалаврын судалгааны ажил}
+% Суралцаж буй хөтөлбөрийн нэр
+\programeName{Мэдээллийн технологи (D061303)}
+% Хэвлэгдсэн газар
+\cityName{Улаанбаатар}
+% Хэвлэгдсэн огноо
+\gradyear{2024 оны 05 сар}
+
+
+%----------------------------------------------------------------------------------------
+%   Доорх хэсгийг өөрчлөх шаардлагагүй
+%----------------------------------------------------------------------------------------
+\include{main-pre}
+
+% Удиртгалыг оруулж ирэх ба abstract.tex файлд удиртгалаа бичнэ
+\include{abstract}
+
+%----------------------------------------------------------------------------------------
+%   Дипломын үндсэн хэсэг эндээс эхэлнэ
+%----------------------------------------------------------------------------------------
+
+\subfile{sections/introduction.tex}
+\subfile{sections/related_work.tex}
+\subfile{sections/methodology.tex}
+\subfile{sections/implementation.tex}
+\subfile{sections/evaluation.tex}
+
+%----------------------------------------------------------------------------------------
+%   Дүгнэлт эндээс эхэлнэ
+%----------------------------------------------------------------------------------------
+\subfile{sections/conclusion.tex}
+
+
+%----------------------------------------------------------------------------------------
+%   Дипломын номзүй, хавсралтын хэсэг эндээс эхэлнэ
+%----------------------------------------------------------------------------------------
+
+\singlespace
+\addcontentsline{toc}{part}{НОМ ЗҮЙ}
+\begin{thebibliography}{}
+    \bibitem{yolov8_ultralytics}
+    Jocher, G., Chaurasia, A., \& Qiu, J. (2023). YOLO by Ultralytics (Version 8.0.0) [Computer software]. \url{https://github.com/ultralytics/ultralytics}
+    
+    \bibitem{yolo_original}
+    J. Redmon, S. Divvala, R. Girshick, and A. Farhadi, "You Only Look Once: Unified, Real-Time Object Detection", in \textit{Proceedings of the IEEE CVPR}, 2016, pp. 779-788.
+    
+    \bibitem{fastapi}
+    S. Ramírez, "FastAPI Framework, high performance, easy to learn, fast to code", \url{https://fastapi.tiangolo.com/}, Accessed: 2024.
+    
+    \bibitem{flutter}
+    Google, "Flutter - Build apps for any screen", \url{https://flutter.dev/}, Accessed: 2024.
+    
+    \bibitem{trax_retail}
+    Trax Retail, "Computer Vision for Retail Execution", \url{https://traxretail.com/}, Accessed: 2024.
+    
+    \bibitem{amazon_go}
+    Amazon, "Amazon Go and Just Walk Out technology", \url{https://www.amazon.com/b?node=16008589011}, Accessed: 2024.
+\end{thebibliography}
+
+
+%----------------------------------------------------------------------------------------
+%   Хавсралтууд эндээс эхэлнэ
+%----------------------------------------------------------------------------------------
+\appendix
+\addcontentsline{toc}{part}{ХАВСРАЛТ}
+
+\subfile{appendix/code.tex}
+
+\end{document}

@@ -41,25 +41,31 @@ async def detect_products(file: UploadFile = File(...)):
         shutil.copyfileobj(file.file, buffer)
 
     try:
-        # TODO: Initialize detector once at startup (in lifespan)
-        # from src.inference.detector import ProductDetector
-        # detector = ProductDetector(settings.MODEL_PATH)
-        # result = detector.detect(str(file_path))
+        from ..services.detection_service import DetectionService
+        import uuid
 
-        # Placeholder response until model is trained
-        result = {
-            "image_path": str(file_path),
-            "timestamp": datetime.now().isoformat(),
-            "detections": [],
-            "total_products": 0,
-            "processing_time_ms": 0,
-            "message": "Model not loaded yet. Train a model first.",
-        }
+        result = DetectionService.detect_from_file(str(file_path))
+
+        if result is None:
+            # Model not loaded yet – return informational placeholder
+            result = {
+                "image_path": str(file_path),
+                "timestamp": datetime.now().isoformat(),
+                "detections": [],
+                "total_products": 0,
+                "processing_time_ms": 0,
+                "message": "Model not loaded. Train a model first.",
+            }
+
+        # Add a unique detection_id for later retrieval
+        result["detection_id"] = str(uuid.uuid4())
 
         # Save to MongoDB
         collection = get_detections_collection()
         await collection.insert_one(result)
 
+        # Remove MongoDB _id for JSON serialisation
+        result.pop("_id", None)
         return result
 
     except Exception as e:

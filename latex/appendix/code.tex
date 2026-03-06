@@ -1,0 +1,34 @@
+\chapter{Аудитын системийн кодын хэсэг}
+Энэхүү хавсралтад FastAPI дээр хөгжүүлсэн аудитын шийдвэр гаргах логикийн голт цөм функцуудыг багтаав.
+
+\begin{lstlisting}[language=Python, caption=Аудит хийх логик, label=lst:audit_logic]
+from typing import Dict
+
+def run_audit(expected: Dict[str, int], detected: Dict[str, int]) -> dict:
+    discrepancies = {}
+    match_rate = 0
+    total_expected = sum(expected.values())
+    total_matched = 0
+
+    for item, count in expected.items():
+        found = detected.get(item, 0)
+        diff = found - count
+        if diff != 0:
+            discrepancies[item] = diff
+        total_matched += min(found, count)
+
+    if total_expected > 0:
+        match_rate = (total_matched / total_expected) * 100
+
+    status = "FAIL"
+    if match_rate == 100:
+        status = "PASS"
+    elif match_rate >= 80:
+        status = "WARNING"
+
+    return {
+        "status": status,
+        "match_rate": round(match_rate, 2),
+        "discrepancies": discrepancies
+    }
+\end{lstlisting}
